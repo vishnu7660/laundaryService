@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!-- ============================================================
+   PureWash Laundry Service - Pricing Page
+   Folder : pages/pricing.html
+   Note   : Uses shared header & footer from /components.
+            Edit the price rows / plan cards below.
+   ============================================================ -->
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <!-- Shared head assets (favicon, Tailwind, fonts, CSS) loaded from components/head.html -->
+    <script>
+        /* PureWash - include shared <head> content (edit components/head.html once, updates all pages) */
+        (function () {
+            var BASE = '../';
+            try {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', BASE + 'components/head.html', false);
+                xhr.send();
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    document.write(xhr.responseText.replace(/__BASE__/g, BASE));
+                }
+            } catch (e) { }
+        })();
+    </script>
+    <title>Pricing | PureWash Laundry</title>
+</head>
+
+<body
+    class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container"
+    data-base="../">
+
+    <!-- Shared Header (loaded by js/main.js) -->
+    <div id="header-placeholder"></div>
+
+    <main class="pt-20">
+
+        <!-- ==========================================================
+             PAGE HERO (small banner)
+             ========================================================== -->
+        <section class="bg-primary text-on-primary py-20">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center space-y-4">
+                <span class="font-label-md text-label-md text-secondary-fixed uppercase tracking-widest">Transparent
+                    Pricing</span>
+                <h1 class="font-display-lg text-headline-lg text-on-primary">Simple, Honest Rates</h1>
+                <p class="font-body-lg text-body-lg text-on-primary/70 max-w-2xl mx-auto">
+                    No hidden fees. No surprises. Just clear per-kg, per-piece and per-set pricing you can rely on.
+                </p>
+            </div>
+        </section>
+
+        <!-- ==========================================================
+             PRICE TABLE
+             ========================================================== -->
+        <!-- <section class="py-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-outline-variant/30">
+                <div class="grid grid-cols-4 bg-primary text-on-primary p-6 font-label-md text-label-md">
+                    <div class="col-span-2">SERVICE ITEM</div>
+                    <div class="text-center">PRICE</div>
+                    <div class="text-center">NOTES</div>
+                </div>
+                <div class="divide-y divide-outline-variant/20">
+                    <div class="grid grid-cols-4 p-6 hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Wash &amp; Fold (Minimum 5kg)</div>
+                        <div class="text-center font-bold text-secondary">$2.50 / kg</div>
+                        <div class="text-center"><span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold uppercase">Eco-Friendly</span></div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 bg-surface hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Shirt (Launder &amp; Press)</div>
+                        <div class="text-center font-bold text-secondary">$3.50 / piece</div>
+                        <div class="text-center text-on-surface-variant text-sm">Hanger included</div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Iron &amp; Press (Shirt)</div>
+                        <div class="text-center font-bold text-secondary">$3.00 / piece</div>
+                        <div class="text-center text-on-surface-variant text-sm">Steam finished</div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 bg-surface hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Bed Linens (Set)</div>
+                        <div class="text-center font-bold text-secondary">$12.00 / set</div>
+                        <div class="text-center text-on-surface-variant text-sm">King/Queen size</div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Suit (2-Piece)</div>
+                        <div class="text-center font-bold text-secondary">$15.00 / suit</div>
+                        <div class="text-center text-on-surface-variant text-sm">Dry clean only</div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 bg-surface hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Curtains (Per Panel)</div>
+                        <div class="text-center font-bold text-secondary">$8.00 / panel</div>
+                        <div class="text-center text-on-surface-variant text-sm">Machine or dry clean</div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Express / Same-Day</div>
+                        <div class="text-center font-bold text-secondary">+$5.00</div>
+                        <div class="text-center text-on-surface-variant text-sm">Priority turnaround</div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+
+        <section class="py-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-outline-variant/30">
+                <div class="grid grid-cols-4 bg-primary text-on-primary p-6 font-label-md text-label-md">
+                    <div class="col-span-2">SERVICE ITEM</div>
+                    <div class="text-center">PRICE</div>
+                    <div class="text-center">NOTES</div>
+                </div>
+                <div class="divide-y divide-outline-variant/20">
+                    <div class="grid grid-cols-4 p-6 hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Wash &amp; Iron (Per Kg)</div>
+                        <div class="text-center font-bold text-secondary">₹90 / kg</div>
+                        <div class="text-center"><span
+                                class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold uppercase">Eco-Friendly</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 bg-surface hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Wash &amp; Fold (Per Kg)</div>
+                        <div class="text-center font-bold text-secondary">₹75 / kg</div>
+                        <div class="text-center text-on-surface-variant text-sm">Everyday laundry</div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Steam Ironing (Per Pc)</div>
+                        <div class="text-center font-bold text-secondary">₹10 / pc</div>
+                        <div class="text-center text-on-surface-variant text-sm">Crisp &amp; wrinkle-free</div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 bg-surface hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Bed Linen Normal (Per Kg)</div>
+                        <div class="text-center font-bold text-secondary">₹110 / kg</div>
+                        <div class="text-center text-on-surface-variant text-sm">Sheets, curtains &amp; more</div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Bed Linen Heavy (Per Kg)</div>
+                        <div class="text-center font-bold text-secondary">₹130 / kg</div>
+                        <div class="text-center text-on-surface-variant text-sm">Blankets, comforters</div>
+                    </div>
+                    <div class="grid grid-cols-4 p-6 bg-surface hover:bg-surface-container transition-colors">
+                        <div class="col-span-2 font-bold text-primary">Shoe Cleaning (Per Pair)</div>
+                        <div class="text-center font-bold text-secondary">₹250 / pair</div>
+                        <div class="text-center text-on-surface-variant text-sm">Expert care</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================
+             SUBSCRIPTION PLANS
+             ========================================================== -->
+        <section class="py-24 bg-surface-container-low">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+                <h2 class="font-headline-lg text-headline-lg text-primary text-center mb-4">Subscription Plans</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant text-center max-w-xl mx-auto mb-16">Save up
+                    to 25% with monthly laundry credits. Perfect for families and busy professionals.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+
+                    <!-- Starter Plan -->
+                    <div
+                        class="bg-white rounded-3xl p-8 border border-outline-variant/30 shadow-sm hover:shadow-xl transition-shadow flex flex-col gap-6">
+                        <div class="space-y-2">
+                            <h3 class="font-headline-md text-headline-md text-primary">Starter</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant">For individuals</p>
+                        </div>
+                        <div class="font-display-lg text-display-lg text-primary">$49<span
+                                class="text-body-lg text-on-surface-variant">/mo</span></div>
+                        <ul class="space-y-3 text-body-md text-body-md text-on-surface-variant flex-1">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-secondary">check</span>10 kg wash &amp; fold
+                            </li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-secondary">check</span>2 shirts pressed</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-secondary">check</span>Standard 48h delivery
+                            </li>
+                        </ul>
+                        <a href="./contact.html"
+                            class="block text-center px-6 py-3 border-2 border-primary text-primary rounded-xl font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">Choose
+                            Starter</a>
+                    </div>
+
+                    <!-- Family Plan (featured) -->
+                    <div class="bg-primary text-on-primary rounded-3xl p-8 shadow-xl flex flex-col gap-6 relative">
+                        <span
+                            class="absolute top-4 right-4 bg-secondary text-on-secondary px-3 py-1 rounded-full text-xs font-bold uppercase">Best
+                            Value</span>
+                        <div class="space-y-2">
+                            <h3 class="font-headline-md text-headline-md">Family</h3>
+                            <p class="font-body-md text-body-md text-on-primary/70">Up to 5 members</p>
+                        </div>
+                        <div class="font-display-lg text-display-lg">$129<span
+                                class="text-body-lg text-on-primary/70">/mo</span></div>
+                        <ul class="space-y-3 text-body-md text-body-md text-on-primary/80 flex-1">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined">check</span>35
+                                kg wash &amp; fold</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined">check</span>10
+                                pieces iron &amp; press</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined">check</span>Priority 24h delivery</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined">check</span>Free
+                                pickup &amp; delivery</li>
+                        </ul>
+                        <a href="./contact.html"
+                            class="block text-center px-6 py-3 bg-secondary text-on-secondary rounded-xl font-label-md text-label-md hover:opacity-90 transition-opacity">Choose
+                            Family</a>
+                    </div>
+
+                    <!-- Premium Plan -->
+                    <div
+                        class="bg-white rounded-3xl p-8 border border-outline-variant/30 shadow-sm hover:shadow-xl transition-shadow flex flex-col gap-6">
+                        <div class="space-y-2">
+                            <h3 class="font-headline-md text-headline-md text-primary">Premium</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant">For households</p>
+                        </div>
+                        <div class="font-display-lg text-display-lg text-primary">$199<span
+                                class="text-body-lg text-on-surface-variant">/mo</span></div>
+                        <ul class="space-y-3 text-body-md text-body-md text-on-surface-variant flex-1">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-secondary">check</span>60 kg wash &amp; fold
+                            </li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-secondary">check</span>2 dry-clean items</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-secondary">check</span>Same-day express</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-secondary">check</span>Dedicated concierge
+                            </li>
+                        </ul>
+                        <a href="./contact.html"
+                            class="block text-center px-6 py-3 border-2 border-primary text-primary rounded-xl font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">Choose
+                            Premium</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shared Footer (loaded by js/main.js) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

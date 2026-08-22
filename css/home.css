@@ -1,0 +1,1066 @@
+/* ============================================================
+   PureWash Laundry Service - Home Page Stylesheet
+   Author : PureWash Team
+   Folder : css/home.css
+   Note   : This file contains ALL the styling for the home page
+            (index.html). Global styles shared across every page
+            live in css/style.css; header/footer styles live in
+            css/header-footer.css. Edit this file to restyle the
+            home page sections below.
+
+            SECTION INDEX
+              1.  Body Base
+              2.  Main Content Offset
+              3.  Hero Section
+              4.  Features Bento Grid
+              5.  Why PureWash / Trust Banner
+              6.  How It Works
+              7.  Services Grid
+              8.  Pricing Section
+              9.  Filled Material Icon (Hero Badge)
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. BODY BASE
+   Base body styling for the home page (formerly the Tailwind
+   utility classes on the <body> tag in index.html):
+     - bg-background            -> background-color
+     - text-on-background       -> color
+     - font-body-md             -> font-family + type scale
+     - selection colors         -> ::selection styling
+   ------------------------------------------------------------ */
+
+/* Smooth anchor scrolling (was the "scroll-smooth" class on <html>) */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f7f9fb;                      /* background */
+    color: #191c1e;                                 /* on-background */
+    font-family: 'Manrope', sans-serif;             /* body-md */
+    font-size: 16px;                                /* body-md */
+    line-height: 24px;                              /* body-md */
+    font-weight: 400;                               /* body-md */
+}
+
+/* Text selection highlight colours */
+body::selection,
+body ::selection {
+    background-color: #58b1fd;                      /* secondary-container */
+    color: #00426c;                                 /* on-secondary-container */
+}
+
+/* ------------------------------------------------------------
+   2. MAIN CONTENT OFFSET
+   Top padding for the fixed header (formerly "pt-20").
+   ------------------------------------------------------------ */
+.home-main {
+    padding-top: 80px;                              /* pt-20 */
+}
+
+/* ------------------------------------------------------------
+   3. HERO SECTION
+   Brand intro, CTA buttons and hero image with animated
+   bubbles. The angled bottom edge is created with clip-path.
+   ------------------------------------------------------------ */
+
+/* Hero banner: soft blue gradient, angled bottom edge */
+.home-hero {
+    position: relative;
+    min-height: 80vh;                               /* min-h-[80vh] */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    /* vitality-gradient (moved from css/style.css) */
+    background: linear-gradient(135deg, #f7f9fb 0%, #cfe5ff 100%);
+    /* hero-mask (moved from css/style.css) */
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+}
+
+/* Layer that holds the JS-generated floating bubbles */
+.home-hero__bubbles {
+    position: absolute;
+    inset: 0;                                       /* absolute inset-0 */
+    z-index: 0;
+}
+
+/* Animated bubble dots (created by js/main.js) */
+.bubble {
+    position: absolute;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(207, 229, 255, 0.4));
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;                           /* let clicks pass through */
+}
+
+/* Two-column responsive layout container */
+.home-hero__inner {
+    max-width: 1200px;                              /* container-max */
+    margin: 0 auto;
+    padding: 80px 16px;                             /* py-20 px-margin-mobile */
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;                     /* 1 col on mobile */
+    gap: 48px;                                      /* gap-12 */
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 768px) {
+    .home-hero__inner {
+        grid-template-columns: repeat(2, 1fr);      /* md:grid-cols-2 */
+        padding: 80px 64px;                         /* px-margin-desktop */
+    }
+}
+
+/* Left column: vertical stack with entrance animation */
+.home-hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;                                      /* space-y-8 */
+    animation: fadeInUp 0.8s ease-out both;         /* animate-fade-in-up */
+}
+
+/* "1 DAY DELIVERY AVAILABLE" pill badge */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;                                       /* gap-2 */
+    padding: 6px 16px;                              /* px-4 py-1.5 */
+    background-color: #58b1fd;                      /* secondary-container */
+    color: #00426c;                                 /* on-secondary-container */
+    border-radius: 9999px;                          /* rounded-full */
+    font-family: 'Manrope', sans-serif;             /* label-md */
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Bolt icon inside the badge (small size) */
+.hero-badge__icon {
+    font-size: 14px;                                /* text-sm */
+}
+
+/* Big headline */
+.hero-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* display-lg */
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: #001a48;                                 /* text-primary */
+}
+
+/* Accent part of the headline */
+.hero-title__accent {
+    color: #00639c;                                 /* text-secondary */
+}
+
+/* Supporting paragraph */
+.hero-subtitle {
+    font-family: 'Manrope', sans-serif;             /* body-lg */
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    color: #444651;                                 /* on-surface-variant */
+    max-width: 32rem;                               /* max-w-lg */
+}
+
+/* CTA button row */
+.hero-actions {
+    display: flex;
+    flex-direction: column;                         /* stacked on mobile */
+    gap: 16px;                                      /* gap-4 */
+}
+
+@media (min-width: 640px) {
+    .hero-actions {
+        flex-direction: row;                        /* sm:flex-row */
+    }
+}
+
+/* Shared button base for the hero CTAs */
+.hero-actions .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;                                      /* gap-3 */
+    padding: 16px 32px;                             /* px-8 py-4 */
+    border-radius: 12px;                            /* rounded-xl */
+    font-family: 'Manrope', sans-serif;             /* label-md */
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    transition: all 0.15s ease;                     /* transition-all */
+}
+
+/* Primary "Book a Pickup" button */
+.btn-book {
+    background-color: #001a48;                      /* bg-primary */
+    color: #ffffff;                                 /* text-on-primary */
+}
+
+.btn-book:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* hover:shadow-lg */
+}
+
+.btn-book:active {
+    transform: scale(0.95);                         /* active:scale-95 */
+}
+
+/* Outlined "View Pricing" button */
+.btn-pricing {
+    border: 2px solid #001a48;                      /* border-2 border-primary */
+    color: #001a48;                                 /* text-primary */
+}
+
+.btn-pricing:hover {
+    background-color: #001a48;                      /* hover:bg-primary */
+    color: #ffffff;                                 /* hover:text-on-primary */
+}
+
+/* Right column: hero image with soft glow behind it */
+.hero-media {
+    position: relative;
+}
+
+/* Blurred coloured glow behind the image frame */
+.hero-media__glow {
+    position: absolute;
+    inset: -16px;                                   /* -inset-4 */
+    background-color: rgba(0, 99, 156, 0.1);        /* bg-secondary/10 */
+    border-radius: 2.5rem;                          /* rounded-[2.5rem] */
+    filter: blur(40px);                             /* blur-2xl */
+    transition: background-color 0.15s ease;
+}
+
+/* Glow intensifies when the image is hovered */
+.hero-media:hover .hero-media__glow {
+    background-color: rgba(0, 99, 156, 0.2);        /* group-hover:bg-secondary/20 */
+}
+
+/* White-bordered, rounded image frame */
+.hero-media__frame {
+    position: relative;
+    border-radius: 2rem;                            /* rounded-[2rem] */
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+    border: 4px solid #ffffff;                      /* border-4 border-white */
+    aspect-ratio: 4 / 3;                            /* aspect-[4/3] */
+}
+
+/* Hero photograph */
+.hero-media__img {
+    width: 100%;                                    /* w-full */
+    height: 100%;                                   /* h-full */
+    object-fit: cover;                              /* object-cover */
+}
+
+/* Entrance animation for hero content */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ------------------------------------------------------------
+   4. FEATURES BENTO GRID
+   Four key selling points in a responsive card grid.
+   ------------------------------------------------------------ */
+.features-section {
+    padding: 96px 16px;                             /* py-24 px-margin-mobile */
+    max-width: 1200px;                              /* container-max */
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .features-section {
+        padding: 96px 64px;                         /* px-margin-desktop */
+    }
+}
+
+/* 1 column mobile -> 4 columns desktop */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;                                      /* gap-gutter */
+}
+
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(4, 1fr);      /* md:grid-cols-4 */
+    }
+}
+
+/* Individual feature card */
+.feature-card {
+    background-color: #ffffff;                      /* bg-surface-container-lowest */
+    padding: 32px;                                  /* p-8 */
+    border-radius: 24px;                            /* rounded-3xl */
+    border: 1px solid rgba(196, 198, 210, 0.3);     /* border-outline-variant/30 */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);    /* shadow-sm */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;                                      /* gap-4 */
+    transition: box-shadow 0.15s ease;              /* transition-shadow */
+}
+
+.feature-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* hover:shadow-xl */
+}
+
+/* Round-cornered square behind the feature icon */
+.feature-card__icon {
+    width: 48px;                                    /* w-12 */
+    height: 48px;                                   /* h-12 */
+    background-color: #58b1fd;                      /* bg-secondary-container */
+    color: #00426c;                                 /* text-on-secondary-container */
+    border-radius: 16px;                            /* rounded-2xl */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-card__title {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-md */
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #001a48;                                 /* text-primary */
+}
+
+.feature-card__text {
+    font-family: 'Manrope', sans-serif;             /* body-md */
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #444651;                                 /* on-surface-variant */
+}
+
+/* ------------------------------------------------------------
+   5. WHY PUREWASH / TRUST BANNER
+   Full-width background image with a navy overlay, four trust
+   stats and a CTA button. Sits between Features and How It Works.
+   ------------------------------------------------------------ */
+.trust-banner {
+    position: relative;
+    overflow: hidden;
+    padding: 96px 16px;                             /* py-24 px-margin-mobile */
+    background-image: url('../images/whyPure.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+@media (min-width: 768px) {
+    .trust-banner {
+        padding: 96px 64px;                         /* px-margin-desktop */
+    }
+}
+
+/* Navy overlay for readability */
+.trust-banner__overlay {
+    position: absolute;
+    inset: 0;                                       /* absolute inset-0 */
+    background-color: rgba(0, 26, 72, 0.72);        /* bg-primary/70 + backdrop blur */
+    backdrop-filter: blur(2px);                     /* backdrop-blur-[2px] */
+}
+
+/* Centered content column above the overlay */
+.trust-banner__inner {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;                              /* container-max */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 48px;                                      /* gap-12 */
+}
+
+/* Heading block: label + title + subtitle */
+.trust-banner__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;                                      /* space-y-4 */
+    max-width: 720px;                               /* max-w-2xl-ish */
+}
+
+/* Reuse .services-header__label for the "Why PureWash" eyebrow.
+   On the dark overlay it needs the lighter accent colour. */
+.trust-banner__text .services-header__label {
+    color: #58b1fd;                                 /* secondary-container */
+}
+
+.trust-banner__title {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-lg/display */
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
+    color: #ffffff;                                 /* text-on-primary */
+}
+
+@media (min-width: 768px) {
+    .trust-banner__title {
+        font-size: 48px;                            /* md:text-5xl */
+        line-height: 56px;
+    }
+}
+
+.trust-banner__subtitle {
+    font-family: 'Manrope', sans-serif;             /* body-lg */
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);                /* text-white/90 */
+}
+
+/* Stats grid: 2 columns mobile -> 4 columns desktop */
+.trust-banner__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);          /* grid-cols-2 */
+    gap: 32px;                                      /* gap-8 */
+    width: 100%;
+    max-width: 900px;
+}
+
+@media (min-width: 768px) {
+    .trust-banner__stats {
+        grid-template-columns: repeat(4, 1fr);      /* md:grid-cols-4 */
+    }
+}
+
+/* Single stat: big number + small uppercase label */
+.trust-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;                                       /* space-y-2 */
+}
+
+.trust-stat__num {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-lg */
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 800;                               /* font-black */
+    color: #58b1fd;                                 /* secondary-container */
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .trust-stat__num {
+        font-size: 48px;                            /* md:text-5xl */
+        line-height: 56px;
+    }
+}
+
+/* Rating block: keeps number + star aligned */
+.trust-stat__num--rating {
+    gap: 4px;                                       /* gap-1 */
+}
+
+/* Star icon inside the 4.9 rating */
+.trust-stat__star {
+    font-size: 32px;                                /* text-3xl */
+    color: #fbbf24;                                 /* text-yellow-400 */
+}
+
+@media (min-width: 768px) {
+    .trust-stat__star {
+        font-size: 40px;                            /* md:text-4xl */
+    }
+}
+
+.trust-stat__label {
+    font-family: 'Manrope', sans-serif;             /* label-md */
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);                /* text-white/80 */
+    text-transform: uppercase;
+}
+
+/* CTA button: pill style with arrow icon */
+.trust-banner__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;                                      /* gap-3 */
+    padding: 20px 40px;                             /* px-10 py-5 */
+    background-color: #58b1fd;                      /* bg-secondary-container */
+    color: #001a48;                                 /* text-primary */
+    border-radius: 9999px;                          /* rounded-full */
+    font-family: 'Manrope', sans-serif;             /* label-md */
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.05em;
+    font-weight: 800;                               /* font-extrabold */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-xl */
+    transition: all 0.3s ease;                      /* transition-all duration-300 */
+}
+
+.trust-banner__cta:hover {
+    background-color: #ffffff;                      /* hover:bg-white */
+    color: #001a48;                                 /* text-primary */
+    transform: scale(1.05);                         /* hover:scale-105 */
+}
+
+/* Arrow icon slides right on hover */
+.trust-banner__cta .material-symbols-outlined {
+    transition: transform 0.3s ease;                /* transition-transform duration-300 */
+}
+
+.trust-banner__cta:hover .material-symbols-outlined {
+    transform: translateX(8px);                     /* group-hover:translate-x-2 */
+}
+
+/* ------------------------------------------------------------
+   6. HOW IT WORKS
+   Four-step process shown in a dark (primary) band.
+   ------------------------------------------------------------ */
+.how-section {
+    padding: 96px 16px;                             /* py-24 px-margin-mobile */
+    background-color: #001a48;                      /* bg-primary */
+    color: #ffffff;                                 /* text-on-primary */
+}
+
+@media (min-width: 768px) {
+    .how-section {
+        padding: 96px 64px;                         /* px-margin-desktop */
+    }
+}
+
+.how-inner {
+    max-width: 1200px;                              /* container-max */
+    margin: 0 auto;
+}
+
+/* Centered heading block */
+.how-heading {
+    text-align: center;
+    margin-bottom: 64px;                            /* mb-16 */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;                                      /* space-y-4 */
+}
+
+/* Reusable section heading (inherits white text here) */
+.section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-lg */
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
+}
+
+/* Dashes + arrow decorative divider */
+.how-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;                                       /* gap-2 */
+}
+
+.how-divider__line {
+    width: 32px;                                    /* w-8 */
+    height: 2px;                                    /* h-0.5 */
+    background-color: #58b1fd;                      /* bg-secondary-container */
+}
+
+.how-divider__icon {
+    color: #58b1fd;                                 /* text-secondary-container */
+}
+
+/* 1 column mobile -> 4 columns desktop */
+.how-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;                                      /* gap-12 */
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .how-grid {
+        grid-template-columns: repeat(4, 1fr);      /* md:grid-cols-4 */
+    }
+}
+
+/* Single step: circle icon over text */
+.how-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;                                      /* space-y-6 */
+}
+
+/* White circle holding the step icon */
+.how-step__circle {
+    width: 80px;                                    /* w-20 */
+    height: 80px;                                   /* h-20 */
+    background-color: #ffffff;                      /* bg-white */
+    color: #001a48;                                 /* text-primary */
+    border-radius: 9999px;                          /* rounded-full */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;                                /* text-3xl */
+    font-weight: 700;                               /* font-bold */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-xl */
+    transition: transform 0.15s ease;               /* transition-transform */
+}
+
+/* Circle scales up when its step is hovered */
+.how-step:hover .how-step__circle {
+    transform: scale(1.1);                          /* group-hover:scale-110 */
+}
+
+.how-step__icon {
+    font-size: 36px;                                /* text-4xl */
+}
+
+/* Text block under the circle */
+.how-step__body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;                                       /* space-y-2 */
+}
+
+.how-step__label {
+    font-family: 'Manrope', sans-serif;             /* label-md */
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: #7a97e2;                                 /* text-on-primary-container */
+}
+
+.how-step__title {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-md */
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+.how-step__text {
+    font-family: 'Manrope', sans-serif;             /* body-md */
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: rgba(122, 151, 226, 0.8);                /* text-on-primary-container/80 */
+}
+
+/* ------------------------------------------------------------
+   7. SERVICES GRID
+   Three core services with images, badges and pricing.
+   ------------------------------------------------------------ */
+.services-section {
+    padding: 96px 16px;                             /* py-24 px-margin-mobile */
+    max-width: 1200px;                              /* container-max */
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .services-section {
+        padding: 96px 64px;                         /* px-margin-desktop */
+    }
+}
+
+/* Title row: heading on the left, "Explore" button on the right */
+.services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;                            /* mb-16 */
+}
+
+/* Left block: label + heading */
+.services-header__text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;                                       /* space-y-2 */
+}
+
+/* Eyebrow label */
+.services-header__label {
+    font-family: 'Manrope', sans-serif;             /* label-md */
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #00639c;                                 /* text-secondary */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;                          /* tracking-widest */
+}
+
+.services-header__title {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-lg */
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
+    color: #001a48;                                 /* text-primary */
+}
+
+/* Right block: "Explore Full Menu" (desktop only) */
+.services-header__cta {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .services-header__cta {
+        display: block;                             /* hidden md:block */
+    }
+}
+
+.services-explore {
+    display: inline-block;
+    padding: 12px 24px;                             /* px-6 py-3 */
+    border: 1px solid #747782;                      /* border-outline */
+    color: #001a48;                                 /* text-primary */
+    border-radius: 9999px;                          /* rounded-full */
+    font-family: 'Manrope', sans-serif;             /* label-md */
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    transition: background-color 0.15s ease;        /* transition-colors */
+}
+
+.services-explore:hover {
+    background-color: #eceef0;                      /* hover:bg-surface-container */
+}
+
+/* 1 column mobile -> 3 columns desktop */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;                                      /* gap-gutter */
+}
+
+@media (min-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);      /* md:grid-cols-3 */
+    }
+}
+
+/* Single service card */
+.service-card {
+    background-color: #ffffff;                      /* bg-surface-container-lowest */
+    border-radius: 24px;                            /* rounded-3xl */
+    overflow: hidden;
+    border: 1px solid rgba(196, 198, 210, 0.3);     /* border-outline-variant/30 */
+    transition: border-color 0.15s ease;
+}
+
+.service-card:hover {
+    border-color: #00639c;                          /* hover:border-secondary */
+}
+
+/* Image area at the top of the card */
+.service-card__media {
+    height: 256px;                                  /* h-64 */
+    overflow: hidden;
+    position: relative;
+}
+
+.service-card__img {
+    width: 100%;                                    /* w-full */
+    height: 100%;                                   /* h-full */
+    object-fit: cover;                              /* object-cover */
+    transition: transform 0.5s ease;                /* transition-transform duration-500 */
+}
+
+/* Image zooms slightly on card hover */
+.service-card:hover .service-card__img {
+    transform: scale(1.1);                          /* group-hover:scale-110 */
+}
+
+/* Floating badge over the image (top-right) */
+.service-card__badge {
+    position: absolute;
+    top: 16px;                                      /* top-4 */
+    right: 16px;                                    /* right-4 */
+    background-color: rgba(255, 255, 255, 0.9);     /* bg-white/90 */
+    backdrop-filter: blur(4px);                     /* backdrop-blur */
+    padding: 4px 12px;                              /* px-3 py-1 */
+    border-radius: 9999px;                          /* rounded-full */
+    font-size: 12px;                                /* text-xs */
+    font-weight: 700;                               /* font-bold */
+    color: #001a48;                                 /* text-primary */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);    /* shadow-sm */
+}
+
+/* Variant: green eco-friendly badge */
+.service-card__badge--eco {
+    background-color: rgba(46, 125, 50, 0.1);       /* bg-success/10 */
+    color: #2e7d32;                                 /* text-success */
+    border: 1px solid rgba(46, 125, 50, 0.3);       /* border-success/30 */
+}
+
+/* Card text body */
+.service-card__body {
+    padding: 32px;                                  /* p-8 */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;                                      /* space-y-4 */
+}
+
+.service-card__title {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-md */
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #001a48;                                 /* text-primary */
+}
+
+.service-card__text {
+    font-family: 'Manrope', sans-serif;             /* body-md */
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #444651;                                 /* on-surface-variant */
+}
+
+/* Price row separated by a top border */
+.service-card__footer {
+    padding-top: 16px;                              /* pt-4 */
+    border-top: 1px solid rgba(196, 198, 210, 0.3); /* border-outline-variant/30 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.service-card__price {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-md */
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #001a48;                                 /* text-primary */
+}
+
+/* "/kg", "/piece" etc. suffix */
+.service-card__unit {
+    font-size: 14px;                                /* text-sm */
+    font-weight: 400;                               /* font-normal */
+    color: #444651;                                 /* on-surface-variant */
+}
+
+/* "Add to Order" link */
+.service-card__link {
+    color: #00639c;                                 /* text-secondary */
+    font-weight: 700;                               /* font-bold */
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+}
+
+/* ------------------------------------------------------------
+   8. PRICING SECTION
+   Transparent price table + subscription call-to-action.
+   ------------------------------------------------------------ */
+.pricing-section {
+    padding: 96px 16px;                             /* py-24 px-margin-mobile */
+    background-color: #f2f4f6;                      /* bg-surface-container-low */
+}
+
+@media (min-width: 768px) {
+    .pricing-section {
+        padding: 96px 64px;                         /* px-margin-desktop */
+    }
+}
+
+.pricing-inner {
+    max-width: 1200px;                              /* container-max */
+    margin: 0 auto;
+}
+
+.pricing-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-lg */
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
+    color: #001a48;                                 /* text-primary */
+    text-align: center;
+    margin-bottom: 64px;                            /* mb-16 */
+}
+
+/* White rounded table wrapper */
+.pricing-table {
+    background-color: #ffffff;                      /* bg-white */
+    border-radius: 24px;                            /* rounded-3xl */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    overflow: hidden;
+    border: 1px solid rgba(196, 198, 210, 0.3);     /* border-outline-variant/30 */
+}
+
+/* Dark header row */
+.pricing-table__head {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);          /* grid-cols-4 */
+    background-color: #001a48;                      /* bg-primary */
+    color: #ffffff;                                 /* text-on-primary */
+    padding: 24px;                                  /* p-6 */
+    font-family: 'Manrope', sans-serif;             /* label-md */
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.pricing-table__head-item {
+    text-align: center;
+}
+
+.pricing-table__head-item:first-child {
+    text-align: left;
+}
+
+/* First header cell spans two grid columns */
+.pricing-table__head-item--span2 {
+    grid-column: span 2;                            /* col-span-2 */
+}
+
+/* Body rows with subtle dividers */
+.pricing-table__body {
+    /* divide-y handled on each row's border-top below */
+}
+
+.pricing-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);          /* grid-cols-4 */
+    padding: 24px;                                  /* p-6 */
+    border-top: 1px solid rgba(196, 198, 210, 0.2); /* divide-outline-variant/20 */
+    transition: background-color 0.15s ease;        /* transition-colors */
+}
+
+/* First row of the body has no top border */
+.pricing-row:first-child {
+    border-top: none;
+}
+
+.pricing-row:hover {
+    background-color: #eceef0;                      /* hover:bg-surface-container */
+}
+
+/* Alternate rows get a soft grey background */
+.pricing-row--alt {
+    background-color: #f7f9fb;                      /* bg-surface */
+}
+
+.pricing-row--alt:hover {
+    background-color: #eceef0;                      /* hover:bg-surface-container */
+}
+
+/* Service item name */
+.pricing-row__item {
+    grid-column: span 2;                            /* col-span-2 */
+    font-weight: 700;                               /* font-bold */
+    color: #001a48;                                 /* text-primary */
+}
+
+/* Price cell */
+.pricing-row__price {
+    text-align: center;
+    font-weight: 700;                               /* font-bold */
+    color: #00639c;                                 /* text-secondary */
+}
+
+/* Notes cell */
+.pricing-row__note {
+    text-align: center;
+    color: #444651;                                 /* text-on-surface-variant */
+    font-size: 14px;                                /* text-sm */
+}
+
+/* Small rounded eco-friendly tag */
+.eco-badge {
+    display: inline-block;
+    padding: 4px 12px;                              /* px-3 py-1 */
+    background-color: #dcfce7;                      /* bg-green-100 */
+    color: #166534;                                 /* text-green-800 */
+    border-radius: 9999px;                          /* rounded-full */
+    font-size: 12px;                                /* text-xs */
+    font-weight: 700;                               /* font-bold */
+    text-transform: uppercase;
+}
+
+/* Subscription call-to-action banner */
+.pricing-cta {
+    margin-top: 48px;                               /* mt-12 */
+    padding: 32px;                                  /* p-8 */
+    background-color: rgba(88, 177, 253, 0.2);      /* bg-secondary-container/20 */
+    border: 1px solid rgba(88, 177, 253, 0.5);      /* border-secondary-container/50 */
+    border-radius: 24px;                            /* rounded-3xl */
+    display: flex;
+    flex-direction: column;                         /* stacked on mobile */
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;                                      /* gap-8 */
+}
+
+@media (min-width: 768px) {
+    .pricing-cta {
+        flex-direction: row;                        /* md:flex-row */
+    }
+}
+
+.pricing-cta__text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;                                       /* space-y-2 */
+}
+
+.pricing-cta__title {
+    font-family: 'Plus Jakarta Sans', sans-serif;   /* headline-md */
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #001a48;                                 /* text-primary */
+}
+
+.pricing-cta__desc {
+    font-family: 'Manrope', sans-serif;             /* body-md */
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #444651;                                 /* on-surface-variant */
+}
+
+.pricing-cta__btn {
+    padding: 16px 32px;                             /* px-8 py-4 */
+    background-color: #00639c;                      /* bg-secondary */
+    color: #ffffff;                                 /* text-on-secondary */
+    border-radius: 12px;                            /* rounded-xl */
+    font-family: 'Manrope', sans-serif;             /* label-md */
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    transition: transform 0.15s ease;               /* transition-transform */
+}
+
+.pricing-cta__btn:active {
+    transform: scale(0.95);                         /* active:scale-95 */
+}
+
+/* ------------------------------------------------------------
+   9. FILLED MATERIAL ICON (HERO BADGE)
+   The hero "bolt" icon uses the Material Symbol fill variant.
+   Replaces the former inline style attribute in index.html.
+   ------------------------------------------------------------ */
+.icon-filled {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+

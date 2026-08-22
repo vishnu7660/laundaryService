@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!-- ============================================================
+   PureWash Laundry Service - Contact / Booking Page
+   Folder : pages/contact.html
+   Note   : Uses shared header & footer from /components.
+            Edit the contact details / booking form below.
+   ============================================================ -->
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <!-- Shared head assets (favicon, Tailwind, fonts, CSS) loaded from components/head.html -->
+    <script>
+        /* PureWash - include shared <head> content (edit components/head.html once, updates all pages) */
+        (function () {
+            var BASE = '../';
+            try {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', BASE + 'components/head.html', false);
+                xhr.send();
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    document.write(xhr.responseText.replace(/__BASE__/g, BASE));
+                }
+            } catch (e) { }
+        })();
+    </script>
+    <title>Contact &amp; Booking | PureWash Laundry</title>
+</head>
+
+<body
+    class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container"
+    data-base="../">
+
+    <!-- Shared Header (loaded by js/main.js) -->
+    <div id="header-placeholder"></div>
+
+    <main class="pt-20">
+
+        <!-- ==========================================================
+             PAGE HERO (small banner)
+             ========================================================== -->
+        <section class="bg-primary text-on-primary py-20">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center space-y-4">
+                <span class="font-label-md text-label-md text-secondary-fixed uppercase tracking-widest">Get In
+                    Touch</span>
+                <h1 class="font-display-lg text-headline-lg text-on-primary">Book a Pickup Today</h1>
+                <p class="font-body-lg text-body-lg text-on-primary/70 max-w-2xl mx-auto">
+                    Fill in the form and our team will confirm your pickup slot within 15 minutes during business hours.
+                </p>
+            </div>
+        </section>
+
+        <!-- ==========================================================
+             CONTACT FORM + INFO
+             ========================================================== -->
+        <section class="py-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+
+                <!-- Left: contact details -->
+                <div class="lg:col-span-2 space-y-8">
+                    <h2 class="font-headline-lg text-headline-lg text-primary">Contact Information</h2>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-2xl flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined">call</span>
+                        </div>
+                        <div>
+                            <h5 class="font-label-md text-label-md text-primary">PHONE</h5>
+                            <p class="font-body-md text-body-md text-on-surface-variant">+91 7295903391</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-2xl flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined">mail</span>
+                        </div>
+                        <div>
+                            <h5 class="font-label-md text-label-md text-primary">EMAIL</h5>
+                            <p class="font-body-md text-body-md text-on-surface-variant">hello@purewash.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-2xl flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined">location_on</span>
+                        </div>
+                        <div>
+                            <h5 class="font-label-md text-label-md text-primary">ADDRESS</h5>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Sy. No. 73/1 Chamundi Layout,
+                                Bettadasanapura Main Road,560100</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-2xl flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined">schedule</span>
+                        </div>
+                        <div>
+                            <h5 class="font-label-md text-label-md text-primary">WORKING HOURS</h5>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Mon - Sun: 8:00 AM - 8:00
+                                PM<br /></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: booking form -->
+                <div class="lg:col-span-3 bg-white rounded-3xl border border-outline-variant/30 shadow-lg p-8 md:p-12">
+                    <h2 class="font-headline-lg text-headline-lg text-primary mb-8">Request a Pickup</h2>
+
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="handleBooking(event)">
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-primary" for="name">Full Name</label>
+                            <input id="name" type="text" required placeholder="Jane Doe"
+                                class="w-full px-4 py-3 rounded-xl border border-outline-variant/50 focus:border-secondary focus:ring-2 focus:ring-secondary-container outline-none transition-colors" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-primary" for="phone">Phone Number</label>
+                            <input id="phone" type="tel" required placeholder="+1 (555) 000-0000"
+                                class="w-full px-4 py-3 rounded-xl border border-outline-variant/50 focus:border-secondary focus:ring-2 focus:ring-secondary-container outline-none transition-colors" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-primary" for="address">Pickup Address</label>
+                            <input id="address" type="text" required placeholder="Street, City, ZIP"
+                                class="w-full px-4 py-3 rounded-xl border border-outline-variant/50 focus:border-secondary focus:ring-2 focus:ring-secondary-container outline-none transition-colors" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-primary" for="date">Preferred Date</label>
+                            <input id="date" type="date" required
+                                class="w-full px-4 py-3 rounded-xl border border-outline-variant/50 focus:border-secondary focus:ring-2 focus:ring-secondary-container outline-none transition-colors" />
+                        </div>
+                        <!-- <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-primary" for="service">Service Type</label>
+                            <select id="service" class="w-full px-4 py-3 rounded-xl border border-outline-variant/50 focus:border-secondary focus:ring-2 focus:ring-secondary-container outline-none transition-colors">
+                                <option>Wash &amp; Fold</option>
+                                <option>Iron &amp; Press</option>
+                                <option>Dry Cleaning</option>
+                                <option>Home Textiles</option>
+                                <option>Express Service</option>
+                            </select>
+                        </div> -->
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-primary" for="service">Service Type</label>
+                            <select id="service"
+                                class="w-full px-4 py-3 rounded-xl border border-outline-variant/50 focus:border-secondary focus:ring-2 focus:ring-secondary-container outline-none transition-colors">
+                                <option>Wash &amp; Iron (₹90/kg)</option>
+                                <option>Wash &amp; Fold (₹75/kg)</option>
+                                <option>Steam Ironing (₹10/pc)</option>
+                                <option>Bed Linen Normal (₹110/kg)</option>
+                                <option>Bed Linen Heavy (₹130/kg)</option>
+                                <option>Shoe Cleaning (₹250/pair)</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-primary" for="time">Preferred Time</label>
+                            <select id="time"
+                                class="w-full px-4 py-3 rounded-xl border border-outline-variant/50 focus:border-secondary focus:ring-2 focus:ring-secondary-container outline-none transition-colors">
+                                <option>Morning (8am – 12pm)</option>
+                                <option>Afternoon (12pm – 4pm)</option>
+                                <option>Evening (4pm – 8pm)</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="font-label-md text-label-md text-primary" for="notes">Special Notes</label>
+                            <textarea id="notes" rows="4"
+                                placeholder="Stain details, delicate items, access instructions..."
+                                class="w-full px-4 py-3 rounded-xl border border-outline-variant/50 focus:border-secondary focus:ring-2 focus:ring-secondary-container outline-none transition-colors"></textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <button type="submit"
+                                class="w-full px-8 py-4 bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-3 hover:shadow-lg active:scale-95 transition-all">
+                                Confirm Booking
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shared Footer (loaded by js/main.js) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Inline booking handler (opens WhatsApp with prefilled message) -->
+    <script>
+        function handleBooking(e) {
+            e.preventDefault();
+            var name = document.getElementById('name').value.trim();
+            var phone = document.getElementById('phone').value.trim();
+            var address = document.getElementById('address').value.trim();
+            var date = document.getElementById('date').value;
+            var service = document.getElementById('service').value;
+            var time = document.getElementById('time').value;
+            var notes = document.getElementById('notes').value.trim();
+
+            var message = 'New pickup booking request\n'
+                + 'Name: ' + name + '\n'
+                + 'Phone: ' + phone + '\n'
+                + 'Address: ' + address + '\n'
+                + 'Date: ' + date + '\n'
+                + 'Time: ' + time + '\n'
+                + 'Service: ' + service;
+            if (notes) message += '\nNotes: ' + notes;
+
+            // Full number WITH country code (91 for India), no + or spaces
+            var waNumber = '916376157896';
+            var waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(message);
+
+            window.open(waUrl, '_blank');
+        }
+    </script>
+
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

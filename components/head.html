@@ -1,0 +1,43 @@
+<!-- ============================================================
+   PureWash Laundry Service - Shared <head> Content
+   Folder : components/head.html
+   Note   : This file is injected into EVERY page's <head> by a
+            small bootstrap script (see index.html / pages/*.html).
+
+            HOW IT WORKS:
+              1. Each page contains a tiny inline script that
+                 fetches this file.
+              2. The token __BASE__ is replaced automatically
+                 with './' (root pages) or '../' (pages/ folder).
+              3. The result is inserted at the top of <head>.
+
+            EDIT ONCE -> EVERY PAGE UPDATES:
+              - Favicon / logo in the browser tab
+              - Google Fonts + Material Icons
+              - Tailwind CDN + theme config
+              - Global stylesheet link
+
+   ============================================================ -->
+
+<!-- Charset + responsive viewport -->
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+<!-- Favicon (browser tab icon) -->
+<link rel="icon" type="image/png" href="__BASE__images/favicon.png" />
+
+<!-- Tailwind CSS (CDN + plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Tailwind theme config (colors / fonts / spacing) -->
+<script src="__BASE__js/tailwind-config.js"></script>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+<!-- Custom project stylesheet -->
+<link href="__BASE__css/style.css" rel="stylesheet" />
+

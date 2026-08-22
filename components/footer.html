@@ -1,0 +1,76 @@
+<!-- ============================================================
+   PureWash Laundry Service - Shared Footer
+   Folder : components/footer.html
+   Note   : Loaded into every page via js/main.js. Edit the
+            brand info, quick links or legal links ONLY here.
+            All styles live in css/header-footer.css (loaded
+            by js/main.js automatically).
+
+            Structure:
+              footer.site-footer     dark brand band
+              └─ .footer-inner       4-column grid
+                 ├─ .footer-brand    logo + description + socials
+                 ├─ .footer-col      COMPANY links
+                 ├─ .footer-col      SERVICES links
+                 └─ .footer-col      LEGAL links + copyright
+   ============================================================ -->
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <!-- Brand Column -->
+        <div class="footer-brand">
+            <a href="./index.html" class="footer-logo">
+                <img class="footer-logo-img" src="./images/logo.jpeg" alt="PureWash logo" />
+            </a>
+            <p class="footer-desc">
+                Freshly clean, perfectly folded. The leading choice for professional fabric care and doorstep convenience.
+            </p>
+            <div class="footer-social">
+                <a class="social-btn" href="#" aria-label="QR code">
+                    <span class="material-symbols-outlined">qr_code_2</span>
+                </a>
+                <a class="social-btn" href="#" aria-label="Social media">
+                    <span class="material-symbols-outlined">camera</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Company Links -->
+        <div class="footer-col">
+            <h5 class="footer-title">COMPANY</h5>
+            <ul class="footer-links">
+                <li><a href="./pages/about.html">Our Story</a></li>
+                <li><a href="./pages/about.html">Sustainability Report</a></li>
+                <li><a href="./pages/contact.html">Careers</a></li>
+                <li><a href="./pages/contact.html">Support</a></li>
+            </ul>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer-col">
+            <h5 class="footer-title">SERVICES</h5>
+            <ul class="footer-links">
+                <li><a href="./pages/services.html">Wash &amp; Fold</a></li>
+                <li><a href="./pages/services.html">Dry Cleaning</a></li>
+                <li><a href="./pages/services.html">Steam Pressing</a></li>
+                <li><a href="./pages/services.html">Home Textiles</a></li>
+            </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="footer-col">
+            <h5 class="footer-title">LEGAL</h5>
+            <ul class="footer-links">
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Refund Policy</a></li>
+            </ul>
+            <div class="footer-legal">
+                <div class="copyright">© 2024 PureWash Laundry Service. All rights reserved.</div>
+            </div>
+        </div>
+    </div>
+</footer>
+

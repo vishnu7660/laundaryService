@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!-- ============================================================
+   PureWash Laundry Service - About / Eco-Commitment Page
+   Folder : pages/about.html
+   Note   : Uses shared header & footer from /components.
+            Edit the story / values / eco stats below.
+   ============================================================ -->
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <!-- Shared head assets (favicon, Tailwind, fonts, CSS) loaded from components/head.html -->
+    <script>
+        /* PureWash - include shared <head> content (edit components/head.html once, updates all pages) */
+        (function () {
+            var BASE = '../';
+            try {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', BASE + 'components/head.html', false);
+                xhr.send();
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    document.write(xhr.responseText.replace(/__BASE__/g, BASE));
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <title>Eco-Commitment | PureWash Laundry</title>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container" data-base="../">
+
+    <!-- Shared Header (loaded by js/main.js) -->
+    <div id="header-placeholder"></div>
+
+    <main class="pt-20">
+
+        <!-- ==========================================================
+             PAGE HERO (small banner)
+             ========================================================== -->
+        <section class="bg-primary text-on-primary py-20">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center space-y-4">
+                <span class="font-label-md text-label-md text-secondary-fixed uppercase tracking-widest">Our Story</span>
+                <h1 class="font-display-lg text-headline-lg text-on-primary">Clean Clothes, Clean Planet</h1>
+                <p class="font-body-lg text-body-lg text-on-primary/70 max-w-2xl mx-auto">
+                    We started PureWash with a simple idea: professional laundry should be convenient for you and kind to the environment.
+                </p>
+            </div>
+        </section>
+
+        <!-- ==========================================================
+             ABOUT / STORY SECTION
+             ========================================================== -->
+        <section class="py-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="rounded-[2rem] overflow-hidden shadow-xl border-4 border-white">
+                    <img class="w-full h-full object-cover aspect-[4/3]" alt="Clean laundry studio with white and blue shirts" src="../images/hero.jpg" />
+                </div>
+                <div class="space-y-6">
+                    <h2 class="font-headline-lg text-headline-lg text-primary">Who We Are</h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant">
+                        Founded in 2020, PureWash has grown from a single neighbourhood laundry room into a full-service fabric-care brand trusted by thousands of families.
+                    </p>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Our team of trained fabric specialists handles every garment with the care it deserves — using eco-friendly detergents, water-saving machines, and biodegradable packaging. We believe quality service should never come at the cost of the planet.
+                    </p>
+                    <div class="grid grid-cols-3 gap-6 pt-4">
+                        <div class="text-center space-y-1">
+                            <div class="font-display-lg text-display-lg text-secondary">4.9<span class="text-body-lg">★</span></div>
+                            <div class="font-label-md text-label-md text-on-surface-variant">Rating</div>
+                        </div>
+                        <div class="text-center space-y-1">
+                            <div class="font-display-lg text-display-lg text-secondary">50K+</div>
+                            <div class="font-label-md text-label-md text-on-surface-variant">Orders</div>
+                        </div>
+                        <div class="text-center space-y-1">
+                            <div class="font-display-lg text-display-lg text-secondary">12K</div>
+                            <div class="font-label-md text-label-md text-on-surface-variant">Families</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================
+             ECO-COMMITMENT VALUES
+             ========================================================== -->
+        <section class="py-24 bg-surface-container-low">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+                <div class="text-center mb-16 space-y-4">
+                    <span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Eco-Commitment</span>
+                    <h2 class="font-headline-lg text-headline-lg text-primary">Sustainability In Every Step</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+
+                    <!-- Eco Value 1 -->
+                    <div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/30 shadow-sm hover:shadow-xl transition-shadow flex flex-col gap-4">
+                        <div class="w-12 h-12 bg-green-100 text-green-800 rounded-2xl flex items-center justify-center">
+                            <span class="material-symbols-outlined">water_drop</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary">Water-Saving Tech</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Our high-efficiency washers use up to 40% less water per load while delivering superior cleaning power.</p>
+                    </div>
+
+                    <!-- Eco Value 2 -->
+                    <div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/30 shadow-sm hover:shadow-xl transition-shadow flex flex-col gap-4">
+                        <div class="w-12 h-12 bg-green-100 text-green-800 rounded-2xl flex items-center justify-center">
+                            <span class="material-symbols-outlined">energy_savings_leaf</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary">Green Detergents</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">100% biodegradable, hypoallergenic detergents that are gentle on your skin and safe for local waterways.</p>
+                    </div>
+
+                    <!-- Eco Value 3 -->
+                    <div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/30 shadow-sm hover:shadow-xl transition-shadow flex flex-col gap-4">
+                        <div class="w-12 h-12 bg-green-100 text-green-800 rounded-2xl flex items-center justify-center">
+                            <span class="material-symbols-outlined">recycling</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary">Zero-Waste Packaging</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Reusable garment bags, recycled paper tags, and plastic-free packaging across all orders.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================
+             VALUES / CORE PILLARS
+             ========================================================== -->
+        <section class="py-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+                <div class="text-center space-y-3">
+                    <span class="material-symbols-outlined text-5xl text-secondary">verified_user</span>
+                    <h4 class="font-headline-md text-headline-md text-primary">Trust</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Every order is insured and handled with full transparency.</p>
+                </div>
+                <div class="text-center space-y-3">
+                    <span class="material-symbols-outlined text-5xl text-secondary">schedule</span>
+                    <h4 class="font-headline-md text-headline-md text-primary">Reliability</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">On-time pickup and delivery, backed by our punctuality promise.</p>
+                </div>
+                <div class="text-center space-y-3">
+                    <span class="material-symbols-outlined text-5xl text-secondary">eco</span>
+                    <h4 class="font-headline-md text-headline-md text-primary">Care</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Expert handling for delicate fabrics and premium finishes.</p>
+                </div>
+                <div class="text-center space-y-3">
+                    <span class="material-symbols-outlined text-5xl text-secondary">favorite</span>
+                    <h4 class="font-headline-md text-headline-md text-primary">Heart</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">A people-first company that treats your clothes like our own.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shared Footer (loaded by js/main.js) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
+

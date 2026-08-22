@@ -1,0 +1,412 @@
+/* ============================================================
+   PureWash Laundry Service - Header & Footer Styles
+   Author : PureWash Team
+   Folder : css/header-footer.css
+   Note   : ONE stylesheet for BOTH the shared header and the
+            shared footer. Referenced from components/header.html
+            and components/footer.html (which are injected into
+            every page by js/main.js).
+
+            Sections:
+              1. Top App Bar (Header)
+              2. Brand Logo
+              3. Desktop Navigation
+              4. Book Now Button
+              5. Basket Icon + Badge
+              6. Mobile Menu
+              7. Footer
+   ============================================================ */
+
+/* ============================================================
+   1. TOP APP BAR (HEADER)
+   Fixed frosted-glass bar. Padding grows/shrinks on scroll via
+   the "scrolled" class toggled by js/main.js.
+   ============================================================ */
+.top-app-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.8);          /* glass effect */
+    backdrop-filter: blur(12px);                    /* frosted blur */
+    -webkit-backdrop-filter: blur(12px);            /* Safari support */
+    border-bottom: 1px solid rgba(196, 198, 210, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Compact header state after scrolling down */
+.top-app-bar.scrolled {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.10);
+}
+
+/* Inner layout: max-width container, horizontal flex */
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;                                  /* mobile padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: padding 0.3s ease;
+}
+
+/* Reduce vertical padding when the bar is scrolled */
+.top-app-bar.scrolled .header-inner {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Desktop side margins */
+@media (min-width: 768px) {
+    .header-inner {
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+}
+
+/* Left group (hamburger + logo) */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Right group (Book Now + basket) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* ------------------------------------------------------------
+   2. BRAND LOGO
+   Image-only logo (no text label). Sizing is controlled here.
+   ------------------------------------------------------------ */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+/* Logo image sizing */
+.logo-img {
+    height: 60px;                                   /* increased logo size */
+    width: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* ------------------------------------------------------------
+   3. DESKTOP NAVIGATION MENU
+   Hidden on mobile, shown from 768px up.
+   ------------------------------------------------------------ */
+.nav-menu {
+    display: none;                                  /* hidden on mobile */
+    align-items: center;
+    gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .nav-menu {
+        display: flex;
+    }
+}
+
+.nav-link {
+    font-family: 'Manrope', sans-serif;
+    font-size: 17px;                                /* increased menu label size */
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.04em;
+    color: #444651;                                 /* on-surface-variant */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #00639c;                                 /* secondary */
+}
+
+/* Active page highlight (added by js/main.js) */
+.nav-link.active {
+    color: #00639c;
+    font-weight: 700;
+}
+
+/* ------------------------------------------------------------
+   4. BOOK NOW BUTTON
+   Visible only on desktop (mobile has its own CTA link).
+   ------------------------------------------------------------ */
+.book-now-btn {
+    display: none;                                  /* hidden on mobile */
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: #001a48;                            /* primary */
+    color: #ffffff;
+    border-radius: 9999px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: transform 0.15s ease;
+}
+
+@media (min-width: 768px) {
+    .book-now-btn {
+        display: flex;
+    }
+}
+
+.book-now-btn:hover {
+    transform: scale(1.03);
+}
+
+.book-now-btn:active {
+    transform: scale(0.95);
+}
+
+/* ------------------------------------------------------------
+   5. BASKET ICON + BADGE
+   Cart icon with a small red item-count badge.
+   ------------------------------------------------------------ */
+.basket-wrap {
+    position: relative;
+}
+
+.basket-icon {
+    color: #001a48;                                 /* primary */
+    padding: 8px;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.basket-icon:hover {
+    background: #eceef0;                            /* surface-container */
+}
+
+.basket-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background: #ba1a1a;                            /* error red */
+    color: #ffffff;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+}
+
+/* ------------------------------------------------------------
+   6. MOBILE MENU (hamburger dropdown)
+   Shown/hidden with the "open" class toggled by js/main.js.
+   ------------------------------------------------------------ */
+.hamburger-btn {
+    color: #001a48;                                 /* primary */
+    font-size: 24px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .hamburger-btn {
+        display: none;                              /* hide on desktop */
+    }
+}
+
+.mobile-menu {
+    display: none;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(196, 198, 210, 0.3);
+}
+
+/* .open is added by JS when the hamburger is tapped */
+.mobile-menu.open {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu {
+        display: none !important;                   /* never show on desktop */
+    }
+}
+
+.mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 4px;
+}
+
+.mobile-menu-link {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;                                /* increased mobile label size */
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #444651;                                 /* on-surface-variant */
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobile-menu-link:hover {
+    background: #eceef0;                            /* surface-container */
+}
+
+.mobile-menu-link.active {
+    color: #00639c;                                 /* secondary */
+    background: rgba(207, 229, 255, 0.4);           /* secondary-fixed tint */
+}
+
+/* Mobile "Book Now" CTA at the bottom of the dropdown */
+.mobile-book-now {
+    margin-top: 8px;
+    background: #001a48;                            /* primary */
+    color: #ffffff;
+    text-align: center;
+}
+
+.mobile-book-now:hover {
+    background: #002d72;                            /* primary-container */
+}
+
+/* ============================================================
+   7. FOOTER
+   Dark brand footer with 4 columns (brand + 3 link columns).
+   ============================================================ */
+.site-footer {
+    width: 100%;
+    margin-top: 80px;
+    background: #001a48;                            /* primary */
+    color: #ffffff;
+}
+
+/* Footer grid container */
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;                     /* single column mobile */
+    gap: 24px;
+    padding: 80px 16px;
+}
+
+@media (min-width: 768px) {
+    .footer-inner {
+        grid-template-columns: repeat(4, 1fr);      /* 4 columns desktop */
+        padding: 80px 64px;
+    }
+}
+
+/* Brand column */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.footer-logo-img {
+    height: 56px;                                   /* increased footer logo size */
+    width: auto;
+    border-radius: 8px;
+}
+
+.footer-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+}
+
+/* Social round buttons */
+.footer-social {
+    display: flex;
+    gap: 16px;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.social-btn:hover {
+    background: #00639c;                            /* secondary */
+}
+
+/* Link columns */
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footer-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    margin: 0;
+}
+
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #cfe5ff;                                 /* secondary-fixed */
+}
+
+/* Legal / copyright block */
+.footer-legal {
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    font-family: 'Manrope', sans-serif;
+}
+

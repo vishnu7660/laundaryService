@@ -1,0 +1,67 @@
+<!-- ============================================================
+   PureWash Laundry Service - Shared Header / Menu
+   Folder : components/header.html
+   Note   : Loaded into every page via js/main.js. Edit the
+            logo, menu links or "Book Now" button ONLY here.
+            All styles live in css/header-footer.css (loaded
+            by js/main.js automatically).
+
+            Structure:
+              .top-app-bar            fixed frosted-glass bar
+              └─ .header-inner        max-width container
+                 ├─ .header-left      hamburger + logo
+                 ├─ nav.nav-menu      desktop links
+                 └─ .header-right     Book Now + basket
+              .mobile-menu            hamburger dropdown
+   ============================================================ -->
+
+<!-- Top App Bar (fixed, frosted glass) -->
+<header class="top-app-bar" id="top-app-bar">
+
+    <div class="header-inner">
+
+        <!-- Left: Mobile hamburger + Brand Logo -->
+        <div class="header-left">
+            <!-- Hamburger (visible on mobile only) -->
+            <button id="mobile-menu-btn" class="hamburger-btn material-symbols-outlined" aria-label="Toggle menu">menu</button>
+
+            <!-- Brand Logo -->
+            <a href="./index.html" class="brand-logo">
+                <img class="logo-img" src="./images/logo1.jpeg" alt="PureWash logo" />
+            </a>
+        </div>
+
+        <!-- Center: Desktop navigation menu -->
+        <nav id="main-nav" class="nav-menu">
+            <a data-page="index.html" href="./index.html" class="nav-link">Home</a>
+            <a data-page="services.html" href="./pages/services.html" class="nav-link">Our Services</a>
+            <a data-page="pricing.html" href="./pages/pricing.html" class="nav-link">Pricing</a>
+            <a data-page="about.html" href="./pages/about.html" class="nav-link">Eco-Commitment</a>
+            <a data-page="contact.html" href="./pages/contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Right: Book Now button + Basket icon -->
+        <div class="header-right">
+            <a href="./pages/contact.html" class="book-now-btn">
+                Book Now
+            </a>
+            <div class="basket-wrap">
+                <span class="basket-icon material-symbols-outlined">shopping_basket</span>
+                <span class="basket-badge">2</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile dropdown menu (hidden by default) -->
+    <div id="mobile-menu" class="mobile-menu">
+        <nav class="mobile-menu-nav">
+            <a data-page="index.html" href="./index.html" class="mobile-menu-link">Home</a>
+            <a data-page="services.html" href="./pages/services.html" class="mobile-menu-link">Our Services</a>
+            <a data-page="pricing.html" href="./pages/pricing.html" class="mobile-menu-link">Pricing</a>
+            <a data-page="about.html" href="./pages/about.html" class="mobile-menu-link">Eco-Commitment</a>
+            <a data-page="contact.html" href="./pages/contact.html" class="mobile-menu-link">Contact</a>
+            <a href="./pages/contact.html" class="mobile-menu-link mobile-book-now">Book Now</a>
+        </nav>
+    </div>
+</header>
+
