@@ -260,6 +260,39 @@ body ::selection {
     object-fit: cover;                              /* object-cover */
 }
 
+/* Mobile adjustments: make hero image fully visible on small screens */
+@media (max-width: 767px) {
+    .home-hero {
+        /* reduce the large min-height so content and image fit without overflowing */
+        min-height: auto;
+        /* soften / reduce the angled clip so it doesn't cut the image on small viewports */
+        clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+    }
+
+    .home-hero__inner {
+        padding: 48px 16px;                         /* less vertical padding on mobile */
+        grid-template-columns: 1fr;                 /* ensure single column layout */
+    }
+
+    .hero-media__frame {
+        aspect-ratio: 16 / 9;                       /* shallower frame on mobile */
+        max-width: 520px;                            /* avoid overly large frames */
+        margin: 0 auto;                              /* center under text */
+        border-radius: 1.25rem;                      /* slightly smaller radius */
+        border-width: 3px;                           /* slightly thinner border */
+        box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-media__glow {
+        inset: -8px;                                 /* smaller glow spread */
+        filter: blur(30px);
+    }
+
+    .hero-media__img {
+        object-position: center top;                 /* prioritize top of image (faces/room) */
+    }
+}
+
 /* Entrance animation for hero content */
 @keyframes fadeInUp {
     from {
