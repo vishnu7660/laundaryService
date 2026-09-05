@@ -216,6 +216,8 @@
     border: none;
     padding: 0;
     cursor: pointer;
+    display: block;                                 /* visible on mobile by default */
+    line-height: 1;
 }
 
 @media (min-width: 768px) {
@@ -226,19 +228,30 @@
 
 .mobile-menu {
     display: none;
+    width: 100%;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-top: 1px solid rgba(196, 198, 210, 0.3);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease, opacity 0.2s ease;
 }
 
 /* .open is added by JS when the hamburger is tapped */
 .mobile-menu.open {
     display: block;
+    max-height: 420px;
+    opacity: 1;
 }
 
 @media (min-width: 768px) {
     .mobile-menu {
         display: none !important;                   /* never show on desktop */
+        max-height: 0 !important;
+        opacity: 0 !important;
     }
 }
 
@@ -305,7 +318,7 @@
 
 @media (min-width: 768px) {
     .footer-inner {
-        grid-template-columns: repeat(4, 1fr);      /* 4 columns desktop */
+        grid-template-columns: 1.5fr 1fr;            /* active footer columns: brand + legal */
         padding: 80px 64px;
     }
 }

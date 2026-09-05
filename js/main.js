@@ -106,11 +106,19 @@ function initMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
     if (!menuBtn || !mobileMenu) return;
 
+    const setMenuState = (isOpen) => {
+        mobileMenu.classList.toggle('open', isOpen);
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
+        menuBtn.textContent = isOpen ? 'close' : 'menu';
+    };
+
     menuBtn.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.contains('open');
-        mobileMenu.classList.toggle('open', !isOpen);
-        // swap the icon between menu / close
-        menuBtn.textContent = isOpen ? 'menu' : 'close';
+        const isOpen = !mobileMenu.classList.contains('open');
+        setMenuState(isOpen);
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenuState(false));
     });
 }
 
