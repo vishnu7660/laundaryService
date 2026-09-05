@@ -119,10 +119,6 @@ function initMobileMenu() {
     };
 
     menuBtn.addEventListener('click', toggleMenu);
-    menuBtn.addEventListener('touchstart', (event) => {
-        event.preventDefault();
-        toggleMenu();
-    }, { passive: false });
 
     mobileMenu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => setMenuState(false));
