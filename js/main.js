@@ -112,10 +112,17 @@ function initMobileMenu() {
         menuBtn.textContent = isOpen ? 'close' : 'menu';
     };
 
-    menuBtn.addEventListener('click', () => {
+    const toggleMenu = (event) => {
+        if (event) event.preventDefault();
         const isOpen = !mobileMenu.classList.contains('open');
         setMenuState(isOpen);
-    });
+    };
+
+    menuBtn.addEventListener('click', toggleMenu);
+    menuBtn.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        toggleMenu();
+    }, { passive: false });
 
     mobileMenu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => setMenuState(false));
