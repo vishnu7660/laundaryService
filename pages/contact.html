@@ -224,31 +224,21 @@
             if (notes) message += '\nNotes: ' + notes;
 
             var confirmation = document.getElementById('booking-confirmation');
-            var submitButton = e.target.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
-            submitButton.classList.add('opacity-60', 'cursor-not-allowed');
 
+            /* WhatsApp Cloud API flow kept for future use when a valid Phone Number ID is available.
             fetch('/api/send-whatsapp', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ to: phone, message: message })
-            })
-                .then(function (response) {
-                    return response.json().then(function (result) {
-                        if (!response.ok || !result.ok) throw new Error(result.error || 'Unable to send your request.');
-                        return result;
-                    });
-                })
-                .then(function () {
-                    confirmation.className = 'mt-6 rounded-xl border border-green-200 bg-green-50 p-4 text-center text-green-800';
-                    confirmation.innerHTML = '<strong>Thank you for your order.</strong><br />Our team will contact you shortly for confirmation.';
-                })
-                .catch(function (error) {
-                    confirmation.className = 'mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-center text-red-800';
-                    confirmation.textContent = error.message + ' Please call us directly.';
-                    submitButton.disabled = false;
-                    submitButton.classList.remove('opacity-60', 'cursor-not-allowed');
-                });
+            });
+            */
+
+            // Direct WhatsApp flow: opens WhatsApp with the booking message ready to send.
+            var waNumber = '919153261528';
+            var waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(message);
+            window.open(waUrl, '_blank');
+            confirmation.className = 'mt-6 rounded-xl border border-green-200 bg-green-50 p-4 text-center text-green-800';
+            confirmation.innerHTML = '<strong>Thank you for your order.</strong><br />WhatsApp has opened with your booking message. Please tap Send to confirm your request.';
         }
 
         var requestedService = new URLSearchParams(window.location.search).get('service');
