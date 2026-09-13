@@ -1,43 +1,69 @@
-// Simple server stub for sending WhatsApp messages
-// Usage: set up Node.js, install dependencies: express, cors, body-parser, axios (optional)
-// Run: node index.js
+// WhatsApp Cloud API server
+// Run with WHATSAPP_TOKEN and WHATSAPP_PHONE_ID environment variables.
 
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const fs = require('fs');
-const path = require('path');
-
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// POST /send-whatsapp
-// Expects JSON { to: '637615786', message: '...', booking: {...} }
-// This stub logs the message to server.log and returns success.
-// To integrate with WhatsApp Business Cloud API or Twilio, replace the sendMessage implementation below.
+function normalizePhoneNumber(value) {
+  return String(value || '').replace(/[^\d]/g, '');
+}
+
+async function sendViaWhatsAppCloud(to, message) {
+  const token = process.env.WHATSAPP_TOKEN;
+  const phoneId = process.env.WHATSAPP_PHONE_ID;
+  const apiVersion = process.env.WHATSAPP_API_VERSION || 'v23.0';
+
+  if (!token || !phoneId) {
+    throw new Error('WhatsApp credentials are not configured on the server.');
+  }
+
+  const response = await fetch(`https://graph.facebook.com/${apiVersion}/${phoneId}/messages`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to,
+      type: 'text',
+      text: { preview_url: false, body: message }
+    })
+  });
+
+  const result = await response.json();
+  if (!response.ok) {
+    const apiError = result.error && result.error.message;
+    throw new Error(apiError || 'WhatsApp Cloud API rejected the message.');
+  }
+
+  return result;
+}
 
 app.post('/send-whatsapp', async (req, res) => {
   try {
     const payload = req.body || {};
-    const log = {
-      time: new Date().toISOString(),
-      payload
-    };
-    const logLine = JSON.stringify(log) + '\n';
-    fs.appendFileSync(path.join(__dirname, 'server.log'), logLine);
+    const to = normalizePhoneNumber(payload.to);
+    const message = String(payload.message || '').trim();
 
-    // TODO: integrate real WhatsApp API here. Example (pseudo):
-    // await sendViaWhatsAppCloud(payload.to, payload.message);
+    if (!/^\d{10,15}$/.test(to) || !message) {
+      return res.status(400).json({ ok: false, error: 'A valid phone number and message are required.' });
+    }
 
-    res.json({ ok: true });
+    const result = await sendViaWhatsAppCloud(to, message);
+    res.json({ ok: true, messageId: result.messages && result.messages[0] && result.messages[0].id });
   } catch (err) {
     console.error('Error in /send-whatsapp', err);
-    res.status(500).json({ ok: false, error: String(err) });
+    res.status(502).json({ ok: false, error: err.message || 'Unable to send the WhatsApp message.' });
   }
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log('Send-whatsapp stub listening on port', PORT);
+  console.log('WhatsApp Cloud API server listening on port', PORT);
 });

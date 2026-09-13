@@ -90,8 +90,22 @@
                         </div>
                         <div>
                             <h5 class="font-label-md text-label-md text-primary">ADDRESS</h5>
-                            <p class="font-body-md text-body-md text-on-surface-variant">Sy. No. 73/1 Chamundi Layout, Bettadasanapura Main Road, Electronic City Phase 1 
-Bangalore - 560100</p>
+                            <a href="https://maps.app.goo.gl/gXt3KLCQ7F8QJpnBA?g_st=iw" target="_blank" rel="noopener noreferrer"
+                                class="font-body-md text-body-md text-secondary hover:underline">
+                                Sy. No. 73/1 Chamundi Layout, Bettadasanapura Main Road, Electronic City Phase 1,<br />
+                                Bangalore - 560100
+                            </a>
+                            <a href="https://maps.app.goo.gl/gXt3KLCQ7F8QJpnBA?g_st=iw" target="_blank" rel="noopener noreferrer"
+                                class="mt-3 inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline">
+                                <span class="material-symbols-outlined text-base">location_on</span>
+                                Open in Google Maps
+                            </a>
+                            <div class="mt-4 overflow-hidden rounded-xl border border-outline-variant/30">
+                                <iframe
+                                    src="https://www.google.com/maps?q=Sy%20No%2073%2F1%2C%20Pure%20Wash%20Laundry%2C%20Chamundi%20Layout%2C%20Bettadasanapura%20Main%20Rd%2C%20Electronic%20City%20Phase%20I%2C%20Bengaluru%2C%20Karnataka%20560100&ftid=0x3bae6bcb8dcf2e5d%3A0x56c16f7498ff2bd1&z=18&output=embed"
+                                    class="h-48 w-full border-0" loading="lazy" allowfullscreen
+                                    referrerpolicy="no-referrer-when-downgrade" title="PureWash Laundry Service location on Google Maps"></iframe>
+                            </div>
                         </div>
                     </div>
 
@@ -102,7 +116,7 @@ Bangalore - 560100</p>
                         </div>
                         <div>
                             <h5 class="font-label-md text-label-md text-primary">WORKING HOURS</h5>
-                            <p class="font-body-md text-body-md text-on-surface-variant">Mon - Sun: 9:00 AM - 9:00 PM<br /></p>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Monday - Saturday: 9:00 AM - 9:30 PM<br />Sunday: 9:00 AM - 10:00 PM</p>
                         </div>
                     </div>
                 </div>
@@ -177,6 +191,9 @@ Bangalore - 560100</p>
                             </button>
                         </div>
                     </form>
+                    <div id="booking-confirmation" class="hidden mt-6 rounded-xl border border-green-200 bg-green-50 p-4 text-center text-green-800" role="status">
+                        <strong>Thank you for your order.</strong><br />Our team will contact you shortly for confirmation.
+                    </div>
                 </div>
             </div>
         </section>
@@ -206,11 +223,43 @@ Bangalore - 560100</p>
                 + 'Service: ' + service;
             if (notes) message += '\nNotes: ' + notes;
 
-            // Full number WITH country code (91 for India), no + or spaces
-            var waNumber = '919153261528';
-            var waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(message);
+            var confirmation = document.getElementById('booking-confirmation');
+            var submitButton = e.target.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.classList.add('opacity-60', 'cursor-not-allowed');
 
-            window.open(waUrl, '_blank');
+            fetch('/api/send-whatsapp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ to: phone, message: message })
+            })
+                .then(function (response) {
+                    return response.json().then(function (result) {
+                        if (!response.ok || !result.ok) throw new Error(result.error || 'Unable to send your request.');
+                        return result;
+                    });
+                })
+                .then(function () {
+                    confirmation.className = 'mt-6 rounded-xl border border-green-200 bg-green-50 p-4 text-center text-green-800';
+                    confirmation.innerHTML = '<strong>Thank you for your order.</strong><br />Our team will contact you shortly for confirmation.';
+                })
+                .catch(function (error) {
+                    confirmation.className = 'mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-center text-red-800';
+                    confirmation.textContent = error.message + ' Please call us directly.';
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-60', 'cursor-not-allowed');
+                });
+        }
+
+        var requestedService = new URLSearchParams(window.location.search).get('service');
+        var serviceSelect = document.getElementById('service');
+        if (requestedService && serviceSelect) {
+            var matchingOption = Array.from(serviceSelect.options).find(function (option) {
+                return option.value === requestedService;
+            });
+            if (matchingOption) {
+                serviceSelect.value = requestedService;
+            }
         }
     </script>
 
